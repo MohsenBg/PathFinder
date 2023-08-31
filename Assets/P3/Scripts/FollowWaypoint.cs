@@ -11,20 +11,26 @@ public class FollowWaypoint : MonoBehaviour {
     public float rotation = 10f;
     public WayPointManger wayPointManger;
     public Transform target;
-
+    // i use it to cash potion
+    private Vector3 targetPosition;
     int currentWayPointIndex = 0;
     Graph graph;
     GameObject currentNode;
 
+
+
     void Start() {
         graph = wayPointManger.graph;
+        targetPosition = target.position;
     }
 
 
     public void GoToTarget() {
+        int first = Random.Range(0, wayPointManger.waypoints.Count);
+        int sec = Random.Range(0, wayPointManger.waypoints.Count);
         currentNode = wayPointManger.waypoints[FindIndexNearestNode(this.transform)];
-        Debug.Log("run:");
-        bool res = graph.AStar(currentNode, wayPointManger.waypoints[FindIndexNearestNode(target)]);
+        GameObject goalNode = wayPointManger.waypoints[FindIndexNearestNode(target)];
+        graph.AStar(currentNode, goalNode);
         currentWayPointIndex = 0;
     }
 
@@ -32,7 +38,6 @@ public class FollowWaypoint : MonoBehaviour {
         List<GameObject> waypoints = wayPointManger.waypoints;
         float lowestDistance = Vector3.SqrMagnitude(waypoints[0].transform.position - transformObj.position);
         int index = 0;
-
         for (int i = 1; i < waypoints.Count; i++) {
             float distance = Vector3.SqrMagnitude(waypoints[i].transform.position - transformObj.position);
 
@@ -42,21 +47,25 @@ public class FollowWaypoint : MonoBehaviour {
 
             }
         }
-
         return index;
     }
 
 
     void Update() {
-        if (Input.GetKeyDown(KeyCode.R)) {
+        if (Input.GetKeyDown(KeyCode.Space)) {
             GoToTarget();
+            targetPosition = target.position;
         }
 
         if (graph.pathList.Count < 1)
             return;
 
-        if (currentWayPointIndex >= graph.pathList.Count)
+        if (currentWayPointIndex >= graph.pathList.Count) {
+            float dis = Vector3.SqrMagnitude(targetPosition - transform.position);
+            if (Mathf.Pow(accuracyDistance, 2f) < dis)
+                MoveTo(target);
             return;
+        }
 
 
         currentNode = graph.pathList[currentWayPointIndex].getId();
@@ -66,11 +75,14 @@ public class FollowWaypoint : MonoBehaviour {
             return;
         }
 
+        MoveTo(currentNode.transform);
 
-        Quaternion lookAtWP = Quaternion.LookRotation(currentNode.transform.position - this.transform.position);
-        transform.rotation = Quaternion.Slerp(transform.rotation, lookAtWP, Time.deltaTime * rotation);
+
+    }
+    void MoveTo(Transform obj) {
+        Quaternion lookAtTarget = Quaternion.LookRotation(obj.position - this.transform.position);
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookAtTarget, Time.deltaTime * rotation);
         // transform.LookAt(currentNode.transform);
         this.transform.Translate(0, 0, speed * Time.deltaTime);
-
     }
 }

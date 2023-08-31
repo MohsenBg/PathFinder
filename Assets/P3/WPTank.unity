@@ -2952,9 +2952,6 @@ MonoBehaviour:
   - node1: {fileID: 1631023215}
     node2: {fileID: 787368469}
     direction: 1
-  - node1: {fileID: 1302687534}
-    node2: {fileID: 787368469}
-    direction: 1
   - node1: {fileID: 417270060}
     node2: {fileID: 787368469}
     direction: 1
@@ -2962,9 +2959,6 @@ MonoBehaviour:
     node2: {fileID: 1245499471}
     direction: 1
   - node1: {fileID: 1245499471}
-    node2: {fileID: 1044210249}
-    direction: 1
-  - node1: {fileID: 417270060}
     node2: {fileID: 1044210249}
     direction: 1
   - node1: {fileID: 417270060}
@@ -2987,9 +2981,6 @@ MonoBehaviour:
     direction: 1
   - node1: {fileID: 1044210249}
     node2: {fileID: 1104079143}
-    direction: 1
-  - node1: {fileID: 417270060}
-    node2: {fileID: 1245499471}
     direction: 1
   - node1: {fileID: 417270060}
     node2: {fileID: 1245499471}
@@ -3039,9 +3030,6 @@ MonoBehaviour:
   - node1: {fileID: 1034704880}
     node2: {fileID: 58903748}
     direction: 1
-  - node1: {fileID: 985364204}
-    node2: {fileID: 58903748}
-    direction: 1
   - node1: {fileID: 58903748}
     node2: {fileID: 1093734451}
     direction: 1
@@ -3057,9 +3045,6 @@ MonoBehaviour:
   - node1: {fileID: 2050639906}
     node2: {fileID: 34195569}
     direction: 1
-  - node1: {fileID: 2050639906}
-    node2: {fileID: 34195569}
-    direction: 1
   - node1: {fileID: 58903748}
     node2: {fileID: 840072209}
     direction: 1
@@ -3071,9 +3056,6 @@ MonoBehaviour:
     direction: 1
   - node1: {fileID: 1504096224}
     node2: {fileID: 989179863}
-    direction: 1
-  - node1: {fileID: 2050639906}
-    node2: {fileID: 1996860311}
     direction: 1
   - node1: {fileID: 840072209}
     node2: {fileID: 1996860311}

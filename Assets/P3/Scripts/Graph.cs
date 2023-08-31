@@ -33,46 +33,48 @@ public class Graph {
 
 
     public bool AStar(GameObject _start, GameObject _goal) {
-        pathList.Clear();
         Node start = FindNode(_start);
         Node goal = FindNode(_goal);
         if (start == null || goal == null)
             return false;
 
+        List<Node> openNodes = new List<Node>();
+        List<Node> closeNodes = new List<Node>();
+
         start.g = 0;
         start.h = getDistanceMagnitude(start, goal);
         start.f = start.h;
-        List<Node> openNodes = new List<Node>();
-        List<Node> closeNodes = new List<Node>();
         openNodes.Add(start);
-
-
-        int maxDepth = 100;
         float gScore = 0;
-        while (openNodes.Count > 0 && maxDepth > 0) {
-            maxDepth--;
+
+        while (openNodes.Count > 0) {
             int currentNodeIndex = getLowestF(openNodes);
             Node currentNode = openNodes[currentNodeIndex];
             if (currentNode.getId() == goal.getId()) {
-                generatePath(currentNode);
+                generatePath(start, goal);
                 return true;
             }
             openNodes.RemoveAt(currentNodeIndex);
             closeNodes.Add(currentNode);
             Node neighbor;
+            bool isGBetter;
             foreach (Edge edge in currentNode.edgesList) {
                 neighbor = edge.goalNode;
 
                 if (closeNodes.IndexOf(neighbor) > -1)
                     continue;
 
-
                 gScore = currentNode.g + getDistanceMagnitude(currentNode, neighbor);
+
                 if (openNodes.IndexOf(neighbor) == -1) {
-                    neighbor.g = gScore;
+                    isGBetter = true;
                     openNodes.Add(neighbor);
-                }
-                if (neighbor.g >= gScore) {
+                } else if (neighbor.g > gScore) {
+                    isGBetter = true;
+                } else
+                    isGBetter = false;
+
+                if (isGBetter == true) {
                     neighbor.g = gScore;
                     neighbor.h = getDistanceMagnitude(neighbor, goal);
                     neighbor.f = neighbor.g + neighbor.h;
@@ -84,12 +86,15 @@ public class Graph {
 
     }
 
-    private void generatePath(Node finalNode) {
-        Node currentNode = finalNode;
-        while (currentNode != null) {
+    private void generatePath(Node start, Node goal) {
+        pathList.Clear();
+        pathList.Add(goal);
+        Node currentNode = goal.cameFrom;
+        while (currentNode != start && currentNode != null) {
             pathList.Insert(0, currentNode);
             currentNode = currentNode.cameFrom;
         }
+        pathList.Insert(0, start);
     }
 
     public float getDistanceMagnitude(Node from, Node to) {
