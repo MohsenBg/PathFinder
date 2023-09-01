@@ -2,50 +2,61 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class FollowWayPoint : MonoBehaviour {
-    public List<GameObject> waypoints;
-    int currentWayPointIndex = 0;
+    [SerializeField] private List<GameObject> waypoints = new List<GameObject>();
+    [SerializeField] [Range(0.2f, 10)] private float accuracyDistance = 1;
+    [SerializeField] private float speed = 10f;
+    [SerializeField] private float rotation = 10f;
+    [SerializeField] private float lookAhead = 10f;
 
-    [Range(0.2f, 10)]
-    public float accuracyDistance = 1;
-    public float speed = 10f;
-    public float rotation = 10f;
+    private GameObject tracker;
+    private int currentWayPointIndex = 0;
 
-    public float lookAhead = 10f;
-
-    GameObject tracker;
-    // Start is called before the first frame update
-    void Start() {
-        tracker = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
-        DestroyImmediate(tracker.GetComponent<Collider>());
-        tracker.GetComponent<Renderer>().enabled = false;
-        tracker.transform.position = this.transform.position;
-        tracker.transform.rotation = this.transform.rotation;
+    private void Start() {
+        InitializeTracker();
     }
 
-    void ProgressTracker() {
-        if (Vector3.Distance(tracker.transform.position, transform.position) > lookAhead)
+    private void InitializeTracker() {
+        tracker = CreateTrackerObject();
+        UpdateTrackerPositionRotation();
+    }
+
+    private GameObject CreateTrackerObject() {
+        GameObject obj = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
+        DestroyImmediate(obj.GetComponent<Collider>());
+        obj.GetComponent<Renderer>().enabled = false;
+        return obj;
+    }
+
+    private void UpdateTrackerPositionRotation() {
+        tracker.transform.position = transform.position;
+        tracker.transform.rotation = transform.rotation;
+    }
+
+    private void ProgressTracker() {
+        if (waypoints.Count == 0 || Vector3.Distance(tracker.transform.position, transform.position) > lookAhead)
             return;
 
         Vector3 currentWayPointPosition = waypoints[currentWayPointIndex].transform.position;
-        Vector2 potionWayPoint2D = new Vector2(currentWayPointPosition.x, currentWayPointPosition.z);
-        Vector3 trackerPosition = tracker.transform.position;
-        Vector2 trackerPosition2D = new Vector2(trackerPosition.x, trackerPosition.z);
-        if (Vector2.Distance(potionWayPoint2D, trackerPosition2D) <= accuracyDistance) {
-            currentWayPointIndex += 1;
-            if (currentWayPointIndex >= waypoints.Count)
-                currentWayPointIndex = 0;
+        Vector2 positionWayPoint2D = new Vector2(currentWayPointPosition.x, currentWayPointPosition.z);
+        Vector2 trackerPosition2D = new Vector2(tracker.transform.position.x, tracker.transform.position.z);
+
+        if (Vector2.Distance(positionWayPoint2D, trackerPosition2D) <= accuracyDistance) {
+            currentWayPointIndex = (currentWayPointIndex + 1) % waypoints.Count;
         }
 
         tracker.transform.LookAt(waypoints[currentWayPointIndex].transform);
         tracker.transform.Translate(0, 0, Time.deltaTime * (speed + 20));
     }
-    // Update is called once per frame
-    void Update() {
+
+    private void Update() {
         ProgressTracker();
 
-        Quaternion lookAtWP = Quaternion.LookRotation(tracker.transform.position - this.transform.position);
+        if (waypoints.Count == 0 || currentWayPointIndex >= waypoints.Count)
+            return;
+
+        Quaternion lookAtWP = Quaternion.LookRotation(tracker.transform.position - transform.position);
         transform.rotation = Quaternion.Slerp(transform.rotation, lookAtWP, Time.deltaTime * rotation);
-        //transform.LookAt(waypoints[currentWayPointIndex].transform);
-        this.transform.Translate(0, 0, speed * Time.deltaTime);
+        transform.Translate(0, 0, speed * Time.deltaTime);
     }
 }
+

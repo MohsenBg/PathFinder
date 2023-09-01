@@ -1,11 +1,10 @@
 using System.Collections.Generic;
 using UnityEngine;
-public class Graph {
-    List<Edge> edges = new List<Edge>();
-    List<Node> nodes = new List<Node>();
-    public List<Node> pathList = new List<Node>();
 
-    public Graph() { }
+public class Graph {
+    private List<Edge> edges = new List<Edge>();
+    private List<Node> nodes = new List<Node>();
+    public List<Node> pathList = new List<Node>();
 
     public void AddNode(GameObject id) {
         Node node = new Node(id);
@@ -15,28 +14,37 @@ public class Graph {
     public void AddEdge(GameObject from, GameObject to) {
         Node nodeFrom = FindNode(from);
         Node nodeTo = FindNode(to);
-        if (nodeFrom == null || nodeTo == null)
-            return;
-        Edge edge = new Edge(nodeFrom, nodeTo);
-        edges.Add(edge);
-        nodeFrom.edgesList.Add(edge);
+        if (nodeFrom != null && nodeTo != null) {
+            Edge edge = new Edge(nodeFrom, nodeTo);
+            edges.Add(edge);
+            nodeFrom.edgesList.Add(edge);
+        } else {
+            Debug.LogWarning("Failed to add edge: One or both nodes not found.");
+        }
     }
 
     public Node FindNode(GameObject node) {
         foreach (Node _node in nodes) {
-            if (_node.getId() == node.gameObject) {
+            if (_node.GetId() == node) {
                 return _node;
             }
         }
         return null;
     }
 
-
     public bool AStar(GameObject _start, GameObject _goal) {
         Node start = FindNode(_start);
         Node goal = FindNode(_goal);
-        if (start == null || goal == null)
+
+        if (start == null || goal == null) {
+            Debug.LogWarning("AStar: Start or goal node not found.");
             return false;
+        }
+
+        if (start.GetId() == goal.GetId()) {
+            Debug.LogWarning("AStar: Start and goal node same.");
+            return true;
+        }
 
         List<Node> openNodes = new List<Node>();
         List<Node> closeNodes = new List<Node>();
@@ -45,52 +53,49 @@ public class Graph {
         start.h = getDistanceMagnitude(start, goal);
         start.f = start.h;
         openNodes.Add(start);
-        float gScore = 0;
 
         while (openNodes.Count > 0) {
             int currentNodeIndex = getLowestF(openNodes);
             Node currentNode = openNodes[currentNodeIndex];
-            if (currentNode.getId() == goal.getId()) {
+
+            if (currentNode == goal) {
                 generatePath(start, goal);
                 return true;
             }
+
             openNodes.RemoveAt(currentNodeIndex);
             closeNodes.Add(currentNode);
             Node neighbor;
-            bool isGBetter;
-            foreach (Edge edge in currentNode.edgesList) {
-                neighbor = edge.goalNode;
+            float tentativeGScore;
 
-                if (closeNodes.IndexOf(neighbor) > -1)
+            foreach (Edge edge in currentNode.edgesList) {
+                neighbor = edge.GetGoalNode();
+
+                if (closeNodes.Contains(neighbor))
                     continue;
 
-                gScore = currentNode.g + getDistanceMagnitude(currentNode, neighbor);
+                tentativeGScore = currentNode.g + getDistanceMagnitude(currentNode, neighbor);
 
-                if (openNodes.IndexOf(neighbor) == -1) {
-                    isGBetter = true;
-                    openNodes.Add(neighbor);
-                } else if (neighbor.g > gScore) {
-                    isGBetter = true;
-                } else
-                    isGBetter = false;
-
-                if (isGBetter == true) {
-                    neighbor.g = gScore;
+                if (!openNodes.Contains(neighbor) || tentativeGScore < neighbor.g) {
+                    neighbor.cameFrom = currentNode;
+                    neighbor.g = tentativeGScore;
                     neighbor.h = getDistanceMagnitude(neighbor, goal);
                     neighbor.f = neighbor.g + neighbor.h;
-                    neighbor.cameFrom = currentNode;
+
+                    if (!openNodes.Contains(neighbor))
+                        openNodes.Add(neighbor);
                 }
             }
         }
+        Debug.LogWarning("AStar: Path not found.");
         return false;
-
     }
 
     private void generatePath(Node start, Node goal) {
         pathList.Clear();
         pathList.Add(goal);
         Node currentNode = goal.cameFrom;
-        while (currentNode != start && currentNode != null) {
+        while (currentNode != null && currentNode != start) {
             pathList.Insert(0, currentNode);
             currentNode = currentNode.cameFrom;
         }
@@ -98,11 +103,10 @@ public class Graph {
     }
 
     public float getDistanceMagnitude(Node from, Node to) {
-        // it way more faster to calculate sqrMagnitude than distance it self  
-        return Vector3.SqrMagnitude(from.getId().transform.position - to.getId().transform.position);
+        return Vector3.SqrMagnitude(from.GetId().transform.position - to.GetId().transform.position);
     }
 
-    int getLowestF(List<Node> _nodes) {
+    private int getLowestF(List<Node> _nodes) {
         float lowestF = _nodes[0].f;
         int index = 0;
         for (int i = 1; i < _nodes.Count; i++) {

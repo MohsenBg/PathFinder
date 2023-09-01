@@ -71,7 +71,7 @@ public class FindPathAStar : MonoBehaviour {
         }
 
         foreach (MapLocation dir in maze.directions) {
-            MapLocation neighbor = dir + thisNode.location;
+            MapLocation neighbor = dir + thisNode.Location;
 
 
             if (neighbor.z >= maze.depth || neighbor.z < 1)
@@ -89,8 +89,8 @@ public class FindPathAStar : MonoBehaviour {
 
 
 
-            float G = Vector2.Distance(neighbor.ToVector(), thisNode.location.ToVector()) + thisNode.g;
-            float H = Vector2.Distance(neighbor.ToVector(), startNode.location.ToVector());
+            float G = Vector2.Distance(neighbor.ToVector(), thisNode.Location.ToVector()) + thisNode.G;
+            float H = Vector2.Distance(neighbor.ToVector(), startNode.Location.ToVector());
             float F = G + H;
 
             Vector3 neighborPosition = new Vector3(neighbor.x * maze.scale, 0, neighbor.z * maze.scale);
@@ -99,9 +99,9 @@ public class FindPathAStar : MonoBehaviour {
             UpdatePathMarkers(new PathMarker(neighbor, pathBlock, thisNode, G, H, F));
         }
 
-        _open = _open.OrderBy(marker => marker.f).ThenBy(marker => marker.g).ToList();
+        _open = _open.OrderBy(marker => marker.F).ThenBy(marker => marker.G).ToList();
         PathMarker pm = (PathMarker)_open.ElementAt(0);
-        pm.marker.GetComponent<Renderer>().material = closeMaterial;
+        pm.Marker.GetComponent<Renderer>().material = closeMaterial;
         _close.Add(pm);
         lastNode = pm;
 
@@ -112,9 +112,9 @@ public class FindPathAStar : MonoBehaviour {
     void UpdatePathMarkers(PathMarker pathMarker) {
         foreach (PathMarker openPath in _open) {
             if (openPath.Equals(pathMarker)) {
-                openPath.g = pathMarker.g;
-                openPath.h = pathMarker.h;
-                openPath.f = pathMarker.f;
+                openPath.G = pathMarker.G;
+                openPath.H = pathMarker.H;
+                openPath.F = pathMarker.F;
                 return;
             }
         }
@@ -129,11 +129,11 @@ public class FindPathAStar : MonoBehaviour {
         RemoveAllMarker();
         PathMarker currentNode = finalNode;
         while (currentNode != null) {
-            Vector3 position = new Vector3(currentNode.location.x * maze.scale, 0, currentNode.location.z * maze.scale);
+            Vector3 position = new Vector3(currentNode.Location.x * maze.scale, 0, currentNode.Location.z * maze.scale);
             GameObject pathBlock = Instantiate(pathMarker, position, Quaternion.identity);
             pathBlock.GetComponent<Renderer>().material = openMaterial;
             pathBlocks.Add(pathBlock);
-            currentNode = currentNode.parent;
+            currentNode = currentNode.Parent;
         }
         pathBlocks[0].GetComponent<Renderer>().material = start.GetComponent<Renderer>().sharedMaterial;
         pathBlocks[pathBlocks.Count - 1].GetComponent<Renderer>().material = goal.GetComponent<Renderer>().sharedMaterial;
@@ -141,7 +141,7 @@ public class FindPathAStar : MonoBehaviour {
 
     bool IsClosed(MapLocation location) {
         foreach (PathMarker marker in _close) {
-            if (marker.location.Equals(location))
+            if (marker.Location.Equals(location))
                 return true;
         }
         return false;

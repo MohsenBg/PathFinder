@@ -693,7 +693,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 35c1c886898f94ca0833cccc2e3388a4,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 52.722015
+      value: 34.8
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 35c1c886898f94ca0833cccc2e3388a4,
         type: 3}
@@ -703,7 +703,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 35c1c886898f94ca0833cccc2e3388a4,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 52.175003
+      value: 45.1
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 35c1c886898f94ca0833cccc2e3388a4,
         type: 3}
@@ -768,7 +768,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 35c1c886898f94ca0833cccc2e3388a4,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 52.1
+      value: 25.1
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 35c1c886898f94ca0833cccc2e3388a4,
         type: 3}
@@ -778,7 +778,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 35c1c886898f94ca0833cccc2e3388a4,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -10.5
+      value: 12.4
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 35c1c886898f94ca0833cccc2e3388a4,
         type: 3}
@@ -1023,9 +1023,9 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 343392249}
   serializedVersion: 2
-  m_Mass: 5000
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_Mass: 50000
+  m_Drag: 10
+  m_AngularDrag: 3
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -1067,8 +1067,8 @@ MonoBehaviour:
   - {fileID: 1984265541}
   - {fileID: 1470346645}
   accuracyDistance: 2
-  speed: 12
-  rotation: 5
+  speed: 6
+  rotation: 3
   lookAhead: 10
 --- !u!4 &343392253
 Transform:
@@ -1269,7 +1269,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 35c1c886898f94ca0833cccc2e3388a4,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -11.3
+      value: -23.2
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 35c1c886898f94ca0833cccc2e3388a4,
         type: 3}
@@ -1279,7 +1279,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 35c1c886898f94ca0833cccc2e3388a4,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 20.6
+      value: 23.9
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 35c1c886898f94ca0833cccc2e3388a4,
         type: 3}
@@ -1440,9 +1440,9 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 445260870}
   serializedVersion: 2
-  m_Mass: 5000
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_Mass: 50000
+  m_Drag: 10
+  m_AngularDrag: 3
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -1484,8 +1484,8 @@ MonoBehaviour:
   - {fileID: 1984265541}
   - {fileID: 1470346645}
   accuracyDistance: 2
-  speed: 10
-  rotation: 4
+  speed: 8
+  rotation: 5
   lookAhead: 10
 --- !u!4 &445260874
 Transform:
@@ -1530,9 +1530,9 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 455251404}
   serializedVersion: 2
-  m_Mass: 5000
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_Mass: 50000
+  m_Drag: 10
+  m_AngularDrag: 3
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -1574,8 +1574,8 @@ MonoBehaviour:
   - {fileID: 1984265541}
   - {fileID: 1470346645}
   accuracyDistance: 2
-  speed: 25
-  rotation: 6
+  speed: 8
+  rotation: 5
   lookAhead: 10
 --- !u!4 &455251408
 Transform:
@@ -2094,9 +2094,9 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 707725639}
   serializedVersion: 2
-  m_Mass: 5000
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_Mass: 50000
+  m_Drag: 10
+  m_AngularDrag: 3
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -2138,8 +2138,8 @@ MonoBehaviour:
   - {fileID: 1984265541}
   - {fileID: 1470346645}
   accuracyDistance: 2
-  speed: 10
-  rotation: 4
+  speed: 6
+  rotation: 3
   lookAhead: 10
 --- !u!4 &707725643
 Transform:
@@ -3289,7 +3289,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 46.485786
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -3314,14 +3314,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: -0.07840944, y: 0.92111385, z: -0.25374553, w: -0.2846303}
-  m_LocalPosition: {x: 64.52687, y: 11.582104, z: 67.14308}
+  m_LocalRotation: {x: 0.5, y: 0, z: 0, w: 0.8660254}
+  m_LocalPosition: {x: 7.1, y: 44, z: -0.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 60, y: 0, z: 0}
 --- !u!114 &963194229
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3370,7 +3370,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 35c1c886898f94ca0833cccc2e3388a4,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -26.2
+      value: -2.3
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 35c1c886898f94ca0833cccc2e3388a4,
         type: 3}
@@ -3380,7 +3380,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 35c1c886898f94ca0833cccc2e3388a4,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 52.175003
+      value: 35.9
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 35c1c886898f94ca0833cccc2e3388a4,
         type: 3}
@@ -3445,7 +3445,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 35c1c886898f94ca0833cccc2e3388a4,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 21.1
+      value: 14.7
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 35c1c886898f94ca0833cccc2e3388a4,
         type: 3}
@@ -3455,7 +3455,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 35c1c886898f94ca0833cccc2e3388a4,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 52.175003
+      value: 40.9
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 35c1c886898f94ca0833cccc2e3388a4,
         type: 3}
@@ -3976,7 +3976,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 35c1c886898f94ca0833cccc2e3388a4,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.7
+      value: -3.6
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 35c1c886898f94ca0833cccc2e3388a4,
         type: 3}
@@ -3986,7 +3986,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 35c1c886898f94ca0833cccc2e3388a4,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -22.1
+      value: 24.8
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 35c1c886898f94ca0833cccc2e3388a4,
         type: 3}
@@ -4063,9 +4063,9 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1153808629}
   serializedVersion: 2
-  m_Mass: 5000
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_Mass: 50000
+  m_Drag: 10
+  m_AngularDrag: 3
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -4107,8 +4107,8 @@ MonoBehaviour:
   - {fileID: 1984265541}
   - {fileID: 1470346645}
   accuracyDistance: 2
-  speed: 25
-  rotation: 6
+  speed: 15
+  rotation: 4
   lookAhead: 10
 --- !u!4 &1153808633
 Transform:
@@ -4153,9 +4153,9 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1212792638}
   serializedVersion: 2
-  m_Mass: 5000
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_Mass: 50000
+  m_Drag: 10
+  m_AngularDrag: 3
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -4197,8 +4197,8 @@ MonoBehaviour:
   - {fileID: 1984265541}
   - {fileID: 1470346645}
   accuracyDistance: 2
-  speed: 12
-  rotation: 5
+  speed: 15
+  rotation: 4
   lookAhead: 10
 --- !u!4 &1212792642
 Transform:
@@ -5109,7 +5109,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 35c1c886898f94ca0833cccc2e3388a4,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 64.7
+      value: 37.5
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 35c1c886898f94ca0833cccc2e3388a4,
         type: 3}
@@ -5119,7 +5119,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 35c1c886898f94ca0833cccc2e3388a4,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 32.3
+      value: 25.2
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 35c1c886898f94ca0833cccc2e3388a4,
         type: 3}
@@ -5269,7 +5269,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 35c1c886898f94ca0833cccc2e3388a4,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 21.1
+      value: 2.8
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 35c1c886898f94ca0833cccc2e3388a4,
         type: 3}
@@ -5279,7 +5279,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 35c1c886898f94ca0833cccc2e3388a4,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -46.7
+      value: 11.5
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 35c1c886898f94ca0833cccc2e3388a4,
         type: 3}
@@ -5440,9 +5440,9 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1574714402}
   serializedVersion: 2
-  m_Mass: 5000
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_Mass: 50000
+  m_Drag: 10
+  m_AngularDrag: 3
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -5484,8 +5484,8 @@ MonoBehaviour:
   - {fileID: 1984265541}
   - {fileID: 1470346645}
   accuracyDistance: 2
-  speed: 25
-  rotation: 6
+  speed: 6
+  rotation: 3
   lookAhead: 10
 --- !u!4 &1574714406
 Transform:
@@ -5698,9 +5698,9 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1649516381}
   serializedVersion: 2
-  m_Mass: 5000
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_Mass: 50000
+  m_Drag: 10
+  m_AngularDrag: 3
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -5742,8 +5742,8 @@ MonoBehaviour:
   - {fileID: 1984265541}
   - {fileID: 1470346645}
   accuracyDistance: 2
-  speed: 5
-  rotation: 2
+  speed: 6
+  rotation: 3
   lookAhead: 10
 --- !u!4 &1649516385
 Transform:
@@ -5788,9 +5788,9 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1694410418}
   serializedVersion: 2
-  m_Mass: 5000
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_Mass: 50000
+  m_Drag: 10
+  m_AngularDrag: 3
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -5832,8 +5832,8 @@ MonoBehaviour:
   - {fileID: 1984265541}
   - {fileID: 1470346645}
   accuracyDistance: 2
-  speed: 5
-  rotation: 2
+  speed: 15
+  rotation: 4
   lookAhead: 10
 --- !u!4 &1694410422
 Transform:
@@ -5878,9 +5878,9 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1757994975}
   serializedVersion: 2
-  m_Mass: 5000
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_Mass: 50000
+  m_Drag: 10
+  m_AngularDrag: 3
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -5922,7 +5922,7 @@ MonoBehaviour:
   - {fileID: 1984265541}
   - {fileID: 1470346645}
   accuracyDistance: 2
-  speed: 12
+  speed: 8
   rotation: 5
   lookAhead: 10
 --- !u!4 &1757994979
@@ -6193,9 +6193,9 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1966947201}
   serializedVersion: 2
-  m_Mass: 5000
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_Mass: 50000
+  m_Drag: 10
+  m_AngularDrag: 3
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -6237,8 +6237,8 @@ MonoBehaviour:
   - {fileID: 1984265541}
   - {fileID: 1470346645}
   accuracyDistance: 2
-  speed: 5
-  rotation: 2
+  speed: 8
+  rotation: 5
   lookAhead: 10
 --- !u!4 &1966947205
 Transform:
@@ -6283,9 +6283,9 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1982531037}
   serializedVersion: 2
-  m_Mass: 5000
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_Mass: 50000
+  m_Drag: 10
+  m_AngularDrag: 3
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -6327,7 +6327,7 @@ MonoBehaviour:
   - {fileID: 1984265541}
   - {fileID: 1470346645}
   accuracyDistance: 2
-  speed: 10
+  speed: 15
   rotation: 4
   lookAhead: 10
 --- !u!4 &1982531041
@@ -6361,7 +6361,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 35c1c886898f94ca0833cccc2e3388a4,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 27.5
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 35c1c886898f94ca0833cccc2e3388a4,
         type: 3}
@@ -6371,7 +6371,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 35c1c886898f94ca0833cccc2e3388a4,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 14.7
+      value: 24.9
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 35c1c886898f94ca0833cccc2e3388a4,
         type: 3}
@@ -7145,8 +7145,8 @@ MonoBehaviour:
   - {fileID: 1984265541}
   - {fileID: 1470346645}
   accuracyDistance: 2
-  speed: 25
-  rotation: 6
+  speed: 20
+  rotation: 5
   lookAhead: 10
 --- !u!65 &2713447972708953234
 BoxCollider:
@@ -7169,13 +7169,13 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2713447972708953232}
   serializedVersion: 2
-  m_Mass: 5000
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_Mass: 50000
+  m_Drag: 10
+  m_AngularDrag: 3
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 36
   m_CollisionDetection: 0
 --- !u!33 &2906081035041282102
 MeshFilter:
@@ -8205,7 +8205,7 @@ MonoBehaviour:
   - {fileID: 1984265541}
   - {fileID: 1470346645}
   accuracyDistance: 2
-  speed: 12
+  speed: 20
   rotation: 5
   lookAhead: 10
 --- !u!65 &7863693248642204186
@@ -8229,13 +8229,13 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6591627735941132299}
   serializedVersion: 2
-  m_Mass: 5000
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_Mass: 50000
+  m_Drag: 10
+  m_AngularDrag: 3
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 36
   m_CollisionDetection: 0
 --- !u!4 &7871142010654116010
 Transform:
@@ -8276,8 +8276,8 @@ MonoBehaviour:
   - {fileID: 1984265541}
   - {fileID: 1470346645}
   accuracyDistance: 2
-  speed: 5
-  rotation: 2
+  speed: 20
+  rotation: 5
   lookAhead: 10
 --- !u!65 &7871142010654116012
 BoxCollider:
@@ -8300,13 +8300,13 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6584456359551941305}
   serializedVersion: 2
-  m_Mass: 5000
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_Mass: 50000
+  m_Drag: 10
+  m_AngularDrag: 3
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 36
   m_CollisionDetection: 0
 --- !u!4 &8076435781734483058
 Transform:
@@ -8489,7 +8489,7 @@ MonoBehaviour:
   - {fileID: 1984265541}
   - {fileID: 1470346645}
   accuracyDistance: 2
-  speed: 10
+  speed: 15
   rotation: 4
   lookAhead: 10
 --- !u!65 &9048989675280529227
@@ -8513,11 +8513,11 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5462622198115272026}
   serializedVersion: 2
-  m_Mass: 5000
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_Mass: 50000
+  m_Drag: 10
+  m_AngularDrag: 3
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 36
   m_CollisionDetection: 0

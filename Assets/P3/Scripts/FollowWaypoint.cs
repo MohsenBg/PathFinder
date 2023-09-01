@@ -2,87 +2,93 @@ using UnityEngine;
 using System.Collections.Generic;
 
 public class FollowWaypoint : MonoBehaviour {
-    Transform goal;
-
-    [Range(0.2f, 10)]
-    public float accuracyDistance = 1;
-    [Range(0.2f, 30)]
-    public float speed = 5f;
-    public float rotation = 10f;
-    public WayPointManger wayPointManger;
+    [SerializeField] [Range(0.2f, 10)] private float accuracyDistance = 1;
+    [SerializeField] [Range(0.2f, 30)] private float speed = 5f;
+    [SerializeField] private float rotationSpeed = 10f;
+    public WaypointManager waypointManager;
     public Transform target;
-    // i use it to cash potion
-    private Vector3 targetPosition;
-    int currentWayPointIndex = 0;
-    Graph graph;
-    GameObject currentNode;
 
+    private Vector3 _targetPosition;
+    private int _currentWaypointIdx = 0;
+    private Graph _graph;
 
-
-    void Start() {
-        graph = wayPointManger.graph;
-        targetPosition = target.position;
+    private void Start() {
+        _graph = waypointManager.graph;
+        _targetPosition = target.position;
     }
 
+    private void Update() {
+        HandleMovementInput();
 
-    public void GoToTarget() {
-        int first = Random.Range(0, wayPointManger.waypoints.Count);
-        int sec = Random.Range(0, wayPointManger.waypoints.Count);
-        currentNode = wayPointManger.waypoints[FindIndexNearestNode(this.transform)];
-        GameObject goalNode = wayPointManger.waypoints[FindIndexNearestNode(target)];
-        graph.AStar(currentNode, goalNode);
-        currentWayPointIndex = 0;
-    }
+        if (_graph.pathList.Count < 1)
+            return;
 
-    int FindIndexNearestNode(Transform transformObj) {
-        List<GameObject> waypoints = wayPointManger.waypoints;
-        float lowestDistance = Vector3.SqrMagnitude(waypoints[0].transform.position - transformObj.position);
-        int index = 0;
-        for (int i = 1; i < waypoints.Count; i++) {
-            float distance = Vector3.SqrMagnitude(waypoints[i].transform.position - transformObj.position);
-
-            if (distance < lowestDistance) {
-                lowestDistance = distance;
-                index = i;
-
-            }
+        if (_currentWaypointIdx >= _graph.pathList.Count) {
+            HandleTargetReached();
+            return;
         }
-        return index;
+
+        GameObject currentNode = _graph.pathList[_currentWaypointIdx].GetId();
+        float distanceToWaypoint = Vector3.SqrMagnitude(currentNode.transform.position - transform.position);
+
+        if (distanceToWaypoint <= accuracyDistance * accuracyDistance) {
+            _currentWaypointIdx++;
+        } else {
+            MoveTo(currentNode.transform);
+        }
     }
 
-
-    void Update() {
+    private void HandleMovementInput() {
         if (Input.GetKeyDown(KeyCode.Space)) {
             GoToTarget();
-            targetPosition = target.position;
+            _targetPosition = target.position;
         }
-
-        if (graph.pathList.Count < 1)
-            return;
-
-        if (currentWayPointIndex >= graph.pathList.Count) {
-            float dis = Vector3.SqrMagnitude(targetPosition - transform.position);
-            if (Mathf.Pow(accuracyDistance, 2f) < dis)
-                MoveTo(target);
-            return;
-        }
-
-
-        currentNode = graph.pathList[currentWayPointIndex].getId();
-        float distance = Vector3.SqrMagnitude(currentNode.transform.position - transform.position);
-        if (Mathf.Pow(accuracyDistance, 2f) > distance) {
-            currentWayPointIndex++;
-            return;
-        }
-
-        MoveTo(currentNode.transform);
-
-
     }
-    void MoveTo(Transform obj) {
-        Quaternion lookAtTarget = Quaternion.LookRotation(obj.position - this.transform.position);
-        transform.rotation = Quaternion.Slerp(transform.rotation, lookAtTarget, Time.deltaTime * rotation);
-        // transform.LookAt(currentNode.transform);
-        this.transform.Translate(0, 0, speed * Time.deltaTime);
+
+    private void HandleTargetReached() {
+        float distanceToTarget = Vector3.SqrMagnitude(_targetPosition - transform.position);
+
+        if (distanceToTarget > accuracyDistance * accuracyDistance) {
+            MoveTo(target);
+        }
+    }
+
+    private void MoveTo(Transform obj) {
+        Quaternion lookAtTarget = Quaternion.LookRotation(obj.position - transform.position);
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookAtTarget, Time.deltaTime * rotationSpeed);
+        transform.Translate(0, 0, speed * Time.deltaTime);
+    }
+
+    public void GoToTarget() {
+        GameObject startWaypoint = FindNearestWaypoint(transform);
+        GameObject goalWaypoint = FindNearestWaypoint(target);
+        if (startWaypoint == goalWaypoint)
+            return;
+        _graph.AStar(startWaypoint, goalWaypoint);
+        _currentWaypointIdx = 0;
+    }
+
+    private GameObject FindNearestWaypoint(Transform transformObj) {
+        List<GameObject> waypoints = waypointManager.waypoints;
+
+        if (waypoints.Count == 0) {
+            Debug.LogWarning("No waypoints found.");
+            return null;
+        }
+
+        GameObject nearestWaypoint = waypoints[0];
+        float shortestDistance = Vector3.SqrMagnitude(nearestWaypoint.transform.position - transformObj.position);
+
+        for (int i = 1; i < waypoints.Count; i++) {
+            GameObject currentWaypoint = waypoints[i];
+            float distance = Vector3.SqrMagnitude(currentWaypoint.transform.position - transformObj.position);
+
+            if (distance < shortestDistance) {
+                shortestDistance = distance;
+                nearestWaypoint = currentWaypoint;
+            }
+        }
+
+        return nearestWaypoint;
     }
 }

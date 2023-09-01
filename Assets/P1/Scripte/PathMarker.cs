@@ -1,33 +1,35 @@
 using UnityEngine;
 
 public class PathMarker {
-    public MapLocation location;
-    public GameObject marker;
-    public PathMarker parent;
+    public MapLocation Location;
+    public GameObject Marker;
+    public PathMarker Parent;
 
-    // target Distance
-    public float g;
+    // target Distance 
+    public float G;
+
     // start Distance
-    public float h;
+    public float H;
+
     // total
-    public float f;
+    public float F;
 
     public PathMarker(MapLocation location, GameObject marker, PathMarker parent, float g, float h, float f) {
-        this.location = location;
-        this.marker = marker;
-        this.parent = parent;
-        this.g = g;
-        this.h = h;
-        this.f = f;
+        this.Location = location;
+        this.Marker = marker;
+        this.Parent = parent;
+        this.G = g;
+        this.H = h;
+        this.F = f;
     }
 
     public override bool Equals(object obj) {
         if (obj == null || !obj.GetType().Equals(GetType()))
             return false;
 
-        MapLocation marketLocation = ((PathMarker)obj).location;
+        MapLocation marketLocation = ((PathMarker)obj).Location;
 
-        return marketLocation.Equals(location);
+        return marketLocation.Equals(Location);
     }
 
     public override int GetHashCode() {
@@ -36,7 +38,7 @@ public class PathMarker {
 
     public void Log() {
         Debug.Log("==============================================\n");
-        Debug.Log($"location:(x:{this.location.x} z:{this.location.z})\n (g:{this.g}, h:{this.h}, f:{this.f}) \n");
+        Debug.Log($"location:(x:{this.Location.x} z:{this.Location.z})\n (g:{this.G}, h:{this.H}, f:{this.F}) \n");
         Debug.Log("==============================================\n");
     }
 
