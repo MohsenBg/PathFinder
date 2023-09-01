@@ -1,5 +1,5 @@
 # Waypoints 
-
+The "Tank Waypoint Challenge" is a Unity project that demonstrates the use of custom waypoints for guiding tanks along predefined paths. In this project, players can observe various tanks with different movement characteristics as they navigate through a series of waypoints.
 
 ## Getting Started
 ![untitled2](https://github.com/MohsenBg/PathFinder/assets/84536899/2bc9b102-6953-4640-9511-6f7bed341af5)
