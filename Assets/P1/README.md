@@ -1,8 +1,4 @@
-# PathFinder (A*)
-This source code contains 3 Projects.
-<br/><br/><br/>
-
-## Maze Solving Algorithm (A*)
+# Maze Solving Algorithm (A*)
 ![untitled](https://github.com/MohsenBg/PathFinder/assets/84536899/8bdf5183-7dfc-4db2-9773-85445db3bd24)
 
 This Unity project demonstrates a simple maze-solving algorithm. You can customize the maze, start and goal positions, and even step through the algorithm to visualize its operation.
@@ -53,9 +49,4 @@ Make sure you have the following software installed before running the project:
 5. **Visualizing the Solution**
 
    - Once the algorithm has found a solution, the path will be highlighted in the maze.
-
-
-## License
-
-This project is licensed under the [MIT License](LICENSE.md).
 
