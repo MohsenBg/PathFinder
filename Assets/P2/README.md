@@ -1,8 +1,8 @@
 # Waypoints 
-![untitled](https://github.com/MohsenBg/PathFinder/assets/84536899/8bdf5183-7dfc-4db2-9773-85445db3bd24)
 
 
 ## Getting Started
+![untitled2](https://github.com/MohsenBg/PathFinder/assets/84536899/2bc9b102-6953-4640-9511-6f7bed341af5)
 
 ### Prerequisites
 
@@ -20,7 +20,4 @@ Make sure you have the following software installed before running the project:
 
 2. Open the project in Unity.
 
-3. You can Find Project in directory Assets/P2
-
-## Usage
-
+3. You can Find the Project in the directory Assets/P2
