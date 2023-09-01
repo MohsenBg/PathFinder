@@ -1,51 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
-
-
-public class PathMarker {
-    public MapLocation location;
-    public GameObject marker;
-    public PathMarker parent;
-    // target Distance
-    public float g;
-    // start Distance
-    public float h;
-    // total
-    public float f;
-
-    public PathMarker(MapLocation location, GameObject marker, PathMarker parent, float g, float h, float f) {
-        this.location = location;
-        this.marker = marker;
-        this.parent = parent;
-        this.g = g;
-        this.h = h;
-        this.f = f;
-    }
-
-    public override bool Equals(object obj) {
-        if (obj == null || !obj.GetType().Equals(GetType()))
-            return false;
-
-        MapLocation marketLocation = ((PathMarker)obj).location;
-
-        return marketLocation.Equals(location);
-    }
-
-    public override int GetHashCode() {
-        return base.GetHashCode();
-    }
-
-    public void Log() {
-        Debug.Log("==============================================\n");
-        Debug.Log($"location:(x:{this.location.x} z:{this.location.z})\n (g:{this.g}, h:{this.h}, f:{this.f}) \n");
-        Debug.Log("==============================================\n");
-    }
-
-    public override string ToString() {
-        return base.ToString();
-    }
-}
+using System.Collections;
 
 
 public class FindPathAStar : MonoBehaviour {
@@ -57,11 +13,13 @@ public class FindPathAStar : MonoBehaviour {
     public GameObject start;
     public GameObject goal;
     public GameObject pathMarker;
+    public PathMarker lastNode;
     private PathMarker goalNode;
     private PathMarker startNode;
-    private PathMarker lastNode;
     private bool isWorkEnd = false;
+    public float waitTimeSecond = 0.1f;
 
+    public bool autoSearch = false;
 
     const string MarkerTag = "marker";
 
@@ -72,7 +30,7 @@ public class FindPathAStar : MonoBehaviour {
         }
     }
 
-    void BeginSearch() {
+    public void BeginSearch() {
         isWorkEnd = false;
         RemoveAllMarker();
 
@@ -104,8 +62,7 @@ public class FindPathAStar : MonoBehaviour {
         lastNode = startNode;
     }
 
-
-    void Search(PathMarker thisNode) {
+    public void StepSearch(PathMarker thisNode) {
         if (thisNode == null) return;
         if (thisNode.Equals(goalNode)) {
             isWorkEnd = true;
@@ -140,10 +97,6 @@ public class FindPathAStar : MonoBehaviour {
             GameObject pathBlock = Instantiate(pathMarker, neighborPosition, Quaternion.identity);
 
             UpdatePathMarkers(new PathMarker(neighbor, pathBlock, thisNode, G, H, F));
-            TextMesh[] texts = pathBlock.GetComponentsInChildren<TextMesh>();
-            texts[0].text = "G:" + G.ToString("0.00");
-            texts[1].text = "H:" + H.ToString("0.00");
-            texts[2].text = "F:" + F.ToString("0.00");
         }
 
         _open = _open.OrderBy(marker => marker.f).ThenBy(marker => marker.g).ToList();
@@ -187,25 +140,24 @@ public class FindPathAStar : MonoBehaviour {
     }
 
     bool IsClosed(MapLocation location) {
-
         foreach (PathMarker marker in _close) {
             if (marker.location.Equals(location))
                 return true;
-
         }
         return false;
     }
-    void Update() {
-        if (Input.GetKeyDown(KeyCode.P))
-            BeginSearch();
 
-        if (Input.GetKeyDown(KeyCode.Escape))
-            RemoveAllMarker();
+    public IEnumerator StartAutoSearch() {
+        int maxDepth = 1000;
+        while (lastNode != null && maxDepth > 0 && autoSearch) {
+            StepSearch(lastNode);
+            maxDepth--;
+            yield return new WaitForSeconds(waitTimeSecond);
+        }
 
-        if (Input.GetKeyDown(KeyCode.N))
-            Search(lastNode);
-
-
+    }
+    void Start() {
+        BeginSearch();
     }
 
 }
