@@ -18,5 +18,5 @@ This project is a simulation of a jet and tank navigating through a grid-based e
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE.md).
+This project is licensed under the [MIT License](LICENSE).
 
