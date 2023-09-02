@@ -7,14 +7,12 @@ public class FollowWaypoint : MonoBehaviour {
     [SerializeField] private float rotationSpeed = 10f;
     public WaypointManager waypointManager;
     public Transform target;
-
     private Vector3 _targetPosition;
     private int _currentWaypointIdx = 0;
     private Graph _graph;
 
     private void Start() {
         _graph = waypointManager.graph;
-        _targetPosition = target.position;
     }
 
     private void Update() {
@@ -39,7 +37,8 @@ public class FollowWaypoint : MonoBehaviour {
     }
 
     private void HandleMovementInput() {
-        if (Input.GetKeyDown(KeyCode.Space)) {
+        float distanceTargetMove = Vector3.SqrMagnitude(_targetPosition - target.position);
+        if (distanceTargetMove > accuracyDistance * accuracyDistance) {
             GoToTarget();
             _targetPosition = target.position;
         }
@@ -62,6 +61,7 @@ public class FollowWaypoint : MonoBehaviour {
     public void GoToTarget() {
         GameObject startWaypoint = FindNearestWaypoint(transform);
         GameObject goalWaypoint = FindNearestWaypoint(target);
+
         if (startWaypoint == goalWaypoint)
             return;
         _graph.AStar(startWaypoint, goalWaypoint);
