@@ -2,20 +2,24 @@ using UnityEngine;
 using System.Collections.Generic;
 
 public class FollowWaypoint : MonoBehaviour {
-    [SerializeField] [Range(0.2f, 10)] private float accuracyDistance = 1;
-    [SerializeField] [Range(0.2f, 30)] private float speed = 5f;
+    [SerializeField][Range(0.2f, 10)] private float accuracyDistance = 1;
+    [SerializeField][Range(0.2f, 30)] private float speed = 5f;
     [SerializeField] private float rotationSpeed = 10f;
+    [SerializeField][Range(0, 2)] private float timeOutChangePath = 1f;
     public WaypointManager waypointManager;
     public Transform target;
     private Vector3 _targetPosition;
     private int _currentWaypointIdx = 0;
     private Graph _graph;
+    private Timer timerPathFinding;
 
     private void Start() {
         _graph = waypointManager.graph;
+        timerPathFinding = new Timer(timeOutChangePath);
     }
 
     private void Update() {
+        timerPathFinding.UpdateTimer(Time.deltaTime);
         HandleMovementInput();
 
         if (_graph.pathList.Count < 1)
@@ -38,9 +42,10 @@ public class FollowWaypoint : MonoBehaviour {
 
     private void HandleMovementInput() {
         float distanceTargetMove = Vector3.SqrMagnitude(_targetPosition - target.position);
-        if (distanceTargetMove > accuracyDistance * accuracyDistance) {
+        if (timerPathFinding.IsTimerZero() && distanceTargetMove > accuracyDistance * accuracyDistance) {
             GoToTarget();
             _targetPosition = target.position;
+            timerPathFinding.RestartTimer();
         }
     }
 
