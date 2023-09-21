@@ -17,6 +17,7 @@ public class Graph
   {
     Node nodeFrom = FindNode(from);
     Node nodeTo = FindNode(to);
+
     if (nodeFrom != null && nodeTo != null)
     {
       Edge edge = new Edge(nodeFrom, nodeTo, cost);
